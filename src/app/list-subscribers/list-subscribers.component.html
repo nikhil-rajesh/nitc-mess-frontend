@@ -1,0 +1,61 @@
+<div class="container" style="padding:2rem;" *ngIf = "loaded">
+    <a style="padding-right: 5px;"><i class="fa fa-search"></i></a>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <div class="mobile">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" [class.isMobile]="isMobile" style="margin: auto;width: 100%;">
+        
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef style="max-width: 120px;"> Id </mat-header-cell>
+                <mat-cell  *matCellDef="let element; let i = index" style="max-width: 120px;">
+                    <span class="mobile-label">Id:</span>
+                    {{i+1}}
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+                <mat-cell  *matCellDef="let element">
+                    <span class="mobile-label">E-Mail:</span>
+                    {{element.email}}
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="rollno">
+                <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <span class="mobile-label">RollNo:</span>
+                    {{element.rollNumber}}
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="total">
+                <mat-header-cell *matHeaderCellDef> Total Dues </mat-header-cell>
+                <mat-cell  *matCellDef="let element">
+                    <span class="mobile-label">Total:</span>
+                    {{element.total}} 
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="adddue">
+                <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell >
+                <mat-cell *matCellDef="let element" >
+                    <span class="mobile-label"></span>
+                    <form #AddDueForm="ngForm" (ngSubmit)="onAddDues(element.rollNumber,AddDueForm.value.due)">
+                        <div class="flex-box">        
+                            <div class="form-group" style="padding-top: 16px;">
+                                <input type="text" placeholder="Add" style="width: 100px;" class="input form-control" ngModel name="due" required>
+                            </div>
+                            <button mat-button class="button is-success" type="submit" style="width:30px;height: 30px;">
+                                <i class="fa fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </form>                
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+    </div>
+</div>

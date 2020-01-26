@@ -1,0 +1,48 @@
+.mat-header-cell {
+    line-height: 5;
+  }
+  
+  .mat-cell {
+    line-height: 4;
+  }
+  .flex-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+    height: 55px;
+    align-items: center;
+  }
+  
+  .mobile-label {
+    display: none;
+  }
+  
+  @media(max-width: 600px) {
+    .mobile {
+      display: flex;
+      flex-direction: column;
+      max-height: 500px;
+      min-width: 300px;
+    }
+    
+    .mobile-label {
+      width: 80px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  
+    .mat-header-row {
+      display: none;
+    }
+  
+    .mat-row { 
+      flex-direction: column;
+      align-items: start;
+      padding: 2px 24px;
+    }
+  
+    .mat-cell {
+      padding: 0;
+    }
+  }
