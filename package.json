@@ -21,10 +21,12 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "angular-cli-ghpages": "^0.6.2",
     "angular-webstorage-service": "^1.0.2",
     "bulma": "^0.8.0",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
+    "ngh": "^0.2.12",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

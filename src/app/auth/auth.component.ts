@@ -39,12 +39,11 @@ export class AuthComponent implements OnInit {
         if(this.authService.isAdmin){
           this.router.navigate(['/list']);
         }
-        // else
-        //  this.router.navigate(['/update']);
+        else
+          this.errorlogin = "Invalid User";
       },
       error => {
-        console.log(error);
-        this.errorlogin = error.headers.name;
+        this.errorlogin = error.error.errors.message;
       }
 
     );

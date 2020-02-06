@@ -17,8 +17,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 
 
 const appRoutes: Routes = [
-  { path: '', component: AuthComponent, canActivate: [AuthGuard2]},
-  { path: 'auth', component: AuthComponent, canActivate: [AuthGuard2]},
+  { path: '', component: AuthComponent},
+  { path: 'auth', component: AuthComponent},
   { path: 'list', component: ListSubscribersComponent, canActivate: [AuthGuard,AuthGuardAdmin] },
   { path: 'unreg', component: ListUnregisteredComponent, canActivate: [AuthGuard,AuthGuardAdmin] }
 ];

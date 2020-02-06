@@ -1,10 +1,11 @@
+<app-header></app-header>
 <div class="container" style="padding:2rem;" *ngIf = "loaded">
     <a style="padding-right: 5px;"><i class="fa fa-search"></i></a>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
     </mat-form-field>
     <div class="mobile">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" [class.isMobile]="isMobile" style="margin: auto;width: 100%;">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin: auto;width: 100%;">
         
             <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef style="max-width: 120px;"> Id </mat-header-cell>

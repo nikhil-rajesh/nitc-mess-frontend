@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One&display=swap');
+.title {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    font-family: 'Patua One', cursive;
+}

@@ -35,13 +35,15 @@ export class AuthGuard2 implements CanActivate {
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuardAdmin implements CanActivate {
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService,private router: Router) { }
 
     canActivate(
         route: ActivatedRouteSnapshot,
         router: RouterStateSnapshot
     ): boolean | Promise<boolean> | Observable<boolean> {
         return this.authService.user.pipe(map(user => {
+            if(!user.isAdmin)
+                this.router.navigate(['/auth']);
             return user.isAdmin;
         }));
     }

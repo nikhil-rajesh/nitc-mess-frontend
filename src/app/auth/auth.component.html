@@ -1,37 +1,41 @@
-<section class="hero is-light is-fullheight-with-navbar">
+<section class="hero is-primary is-fullheight">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
-          <div class="column is-5-tablet is-half-desktop is-5-widescreen">
-            <form #loginForm="ngForm" class="box" (ngSubmit)="onSubmitLogin(loginForm)">
-                <div class="notification is-danger" *ngIf="errorlogin">
-                    <p>{{errorlogin}}</p>
-                </div>
-                <div class="field">
-                    <label for="" class="label">Username</label>
-                    <div class="form-group control has-icons-left">
-                        <input type="name" placeholder="e.g. Admin" class="input form-control" ngModel name="name" required>
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-envelope"></i>
-                        </span>
+            <div class="column title">
+                <h1>NIT-C</h1>
+                <h1>Mess Management</h1>
+            </div>
+            <div class="column is-5-tablet is-half-desktop is-4-widescreen">
+                <form #loginForm="ngForm" class="box" (ngSubmit)="onSubmitLogin(loginForm)">
+                    <div class="notification is-danger" *ngIf="errorlogin">
+                        <p>{{errorlogin}}</p>
                     </div>
-                </div>
-                <div class="field">
-                    <label for="" class="label">Password</label>
-                    <div class="form-group control has-icons-left">
-                        <input type="password" placeholder="*******" class="input form-control" ngModel name="password" required minlength="6">
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-lock"></i>
-                        </span>
+                    <div class="field">
+                        <label for="" class="label">Username<span style="color: #f14668;">*</span></label>
+                        <div class="form-group control has-icons-left">
+                            <input type="name" placeholder="e.g. Admin" class="input form-control" ngModel name="name" required>
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="field">
-                    <button class="button is-success" type="submit">
-                        Login
-                    </button>
-                </div>
-            </form>
-          </div>
+                    <div class="field">
+                        <label for="" class="label">Password<span style="color: #f14668;">*</span></label>
+                        <div class="form-group control has-icons-left">
+                            <input type="password" placeholder="*******" class="input form-control" ngModel name="password" required>
+                            <span class="icon is-small is-left">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button class="button is-success" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
       </div>
     </div>
