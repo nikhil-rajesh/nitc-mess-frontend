@@ -18,7 +18,7 @@ export class ListsubscribersService {
                 })
             };
             return this.http.get(
-                'http://nitc-mess.anandu.net/api/dues/list',httpOptions
+                'http://nitc-mess.anandu.net/api/admin/list-people',httpOptions
             );
         }));
     }
