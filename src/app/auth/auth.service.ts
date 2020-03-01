@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
-import {tap, take, exhaustMap} from 'rxjs/operators';
+import {tap, take, exhaustMap, startWith} from 'rxjs/operators';
 import * as jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 import { User } from './useradmin.model';
@@ -148,6 +148,24 @@ export class AuthService {
             return this.http.post(this.url + 'api/admin/student/dues',
             {
                 "rollNumber": this.dueUser.value.roll
+            },httpOptions);
+        }));
+    }
+
+    //messCut
+    messcut(start: number, end: number, roll: string){
+        return this.user.pipe(take(1), exhaustMap(user => {
+            const httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer "+ user.token
+                })
+            };
+            return this.http.post(this.url + 'api/dues/messcut',
+            {
+                "rollNumber": roll,
+                "start": start,
+                "end": end
             },httpOptions);
         }));
     }

@@ -42,7 +42,8 @@ export class MessCutComponent implements OnInit {
   users: listuser[] = [];
   filteredUsers: Observable<listuser[]>;
 
-  selected =  {startDate: moment(), endDate: moment()};
+  extraDates =  {startDate: moment(), endDate: moment()};
+  messcutDates =  {startDate: moment(), endDate: moment()};
   constructor(private authService: AuthService) { 
     this.authService.listu().subscribe(
       resData => {
@@ -128,13 +129,24 @@ export class MessCutComponent implements OnInit {
     this.authService.dueUser.next(this.user);
     this.makeDueList();
   }
-  
+
   private _filterusers(value: string): listuser[] {
     const filterValue = value.toLowerCase();
 
     return this.users.filter(option => option.rollNumber.toLowerCase().includes(filterValue));
   }
 
+  messcut(){
+    this.authService.messcut(this.messcutDates.startDate.valueOf(), this.messcutDates.endDate.valueOf(), this.user.roll).subscribe(
+      resData => {
+        console.log(resData);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.makeDueList();
+  }
   ngOnInit() {
     if(this.authService.dueUser.value !== null){
       this.authService.dueUser.subscribe(user => this.user = user);

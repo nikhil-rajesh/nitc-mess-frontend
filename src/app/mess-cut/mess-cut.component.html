@@ -41,11 +41,11 @@
                     <input matInput 
                     type="text" 
                     placeholder="Mess Cut Date Range.." ngxDaterangepickerMd  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                    [(ngModel)]="selected" 
+                    [(ngModel)]="messcutDates" 
                     />     
                 </mat-form-field>
                 <div class="buttons" style="margin-bottom: 1.5em;">
-                    <button mat-raised-button class="button is-primary">Absent</button>
+                    <button mat-raised-button class="button is-primary" (click)="messcut()">Absent</button>
                     <button mat-raised-button class="button is-primary">Present</button>
                 </div>
                 <mat-divider></mat-divider>
@@ -53,7 +53,7 @@
                     <input matInput 
                     type="text" 
                     placeholder="Extra.." ngxDaterangepickerMd  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                    [(ngModel)]="selected" 
+                    [(ngModel)]="extraDates" 
                     />     
                 </mat-form-field>
                 <button mat-raised-button class="button buttons is-primary" style="margin-bottom: 1.5em;">Delete Extra</button>
