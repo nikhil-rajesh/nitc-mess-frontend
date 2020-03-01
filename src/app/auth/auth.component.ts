@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
       authService.username = this.storage.get('username');
       const user = new User(this.storage.get('token'),this.storage.get('isAdmin'));
       authService.user.next(user);
-      this.router.navigate(['/messcut']);
+      this.router.navigate(['/list']);
     }
   }
   

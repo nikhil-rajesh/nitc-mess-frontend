@@ -33,7 +33,7 @@ export class dueUserModel {
 @Injectable({providedIn: 'root'})
 export class AuthService {
     user = new BehaviorSubject<User>(null);
-    url = 'http://nitc-mess.anandu.net/';
+    url = 'https://nitc-mess.herokuapp.com/';
     isAdmin: boolean;
     username: string;
     mess: string;
