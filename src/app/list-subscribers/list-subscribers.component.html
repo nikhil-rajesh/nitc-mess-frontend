@@ -1,62 +1,105 @@
 <app-header></app-header>
-<div class="container" style="padding:2rem;" *ngIf = "loaded">
-    <a style="padding-right: 5px;"><i class="fa fa-search"></i></a>
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-    </mat-form-field>
-    <div class="mobile">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin: auto;width: 100%;">
-        
-            <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef style="max-width: 120px;"> Id </mat-header-cell>
-                <mat-cell  *matCellDef="let element; let i = index" style="max-width: 120px;">
-                    <span class="mobile-label">Id:</span>
-                    {{i+1}}
-                </mat-cell>
-            </ng-container>
-            
-            <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
-                <mat-cell  *matCellDef="let element">
-                    <span class="mobile-label">E-Mail:</span>
-                    {{element.email}}
-                </mat-cell>
-            </ng-container>
-            
-            <ng-container matColumnDef="rollno">
-                <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <span class="mobile-label">RollNo:</span>
-                    {{element.rollNumber}}
-                </mat-cell>
-            </ng-container>
-            
-            <ng-container matColumnDef="total">
-                <mat-header-cell *matHeaderCellDef> Total Dues </mat-header-cell>
-                <mat-cell  *matCellDef="let element">
-                    <span class="mobile-label">Total:</span>
-                    {{element.total}} 
-                </mat-cell>
-            </ng-container>
+<div class="container" style="padding:4rem 2rem;" *ngIf="loaded">
+    <div class="columns is-multiline">
+        <div class="column is-paddingless is-four-fifths">
+            <mat-form-field appearance="outline" class="search">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                <mat-icon matSuffix><i class="material-icons">search</i></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="column is-paddingless is-one-fifths datepick">
+            <form class="form-horizontal" id="wastage" [formGroup]="date">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date of Wastage</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date" (click)="picker.open()" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="column something is-full">
+            <div class="mobile">
+                <mat-card>
+                    <table mat-table [dataSource]="dataSource" style="margin: auto;width: 100%;">
 
-            <ng-container matColumnDef="adddue">
-                <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell >
-                <mat-cell *matCellDef="let element" >
-                    <span class="mobile-label"></span>
-                    <form #AddDueForm="ngForm" (ngSubmit)="onAddDues(element.rollNumber,AddDueForm.value.due)">
-                        <div class="flex-box">        
-                            <div class="form-group" style="padding-top: 16px;">
-                                <input type="text" placeholder="Add" style="width: 100px;" class="input form-control" ngModel name="due" required>
-                            </div>
-                            <button mat-button class="button is-success" type="submit" style="width:30px;height: 30px;">
-                                <i class="fa fa-check-circle"></i>
-                            </button>
-                        </div>
-                    </form>                
-                </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </table>
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef style="max-width: 80px;"> Id </mat-header-cell>
+                            <mat-cell *matCellDef="let element; let i = index" style="max-width: 80px;">
+                                <span class="mobile-label">Id:</span>
+                                {{i+1}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef style="min-width: 280px;"> E-mail </mat-header-cell>
+                            <mat-cell *matCellDef="let element" style="min-width: 280px;">
+                                <span class="mobile-label">E-Mail:</span>
+                                <a routerLink="/messcut" (click)="onSelectStudent(element)">
+                                    {{element.email}}
+                                </a>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="rollno">
+                            <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="mobile-label">RollNo:</span>
+                                {{element.rollNumber}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="hostel">
+                            <mat-header-cell *matHeaderCellDef> Hostel </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="mobile-label">Hostel:</span>
+                                {{element.hostel}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="room">
+                            <mat-header-cell *matHeaderCellDef> Room </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="mobile-label">Room:</span>
+                                {{element.room}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="total">
+                            <mat-header-cell *matHeaderCellDef> Total Dues </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="mobile-label">Total:</span>
+                                {{element.total}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="adddue">
+                            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span class="mobile-label"></span>
+                                <form id="AddDueForm" [formGroup]="AddDueForm"
+                                    (ngSubmit)="onAddDues(element.rollNumber)">
+                                    <div class="flex-box">
+                                        <div style="padding-top: 16px;">
+                                            <mat-form-field appearance="outline" style="width: 100px;">
+                                                <input type="text" matInput placeholder="Add"
+                                                    formControlName="due">
+                                            </mat-form-field>
+                                        </div>
+                                        <button class="button is-success" type="submit"
+                                            style="width:30px ;height: 30px;">
+                                            <i class="fa fa-check-circle"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </table>
+                </mat-card>
+
+            </div>
+        </div>
     </div>
 </div>

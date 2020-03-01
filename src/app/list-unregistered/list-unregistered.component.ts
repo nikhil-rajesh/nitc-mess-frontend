@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
-import { ListUnregisteredService } from './list-unregistered.service';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 
@@ -22,12 +21,12 @@ export class ListUnregisteredComponent implements OnInit {
   loaded = false;
   displayedColumns: string[] = ['id','email','rollno','adddue'];
   dataSource = new MatTableDataSource(this.users);
-  constructor(private listunregisteredservice: ListUnregisteredService, private authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.makelist();
   }
 
   makelist(){
-    this.listunregisteredservice.listunreg().subscribe(
+    this.authService.listunreg().subscribe(
       resData => {
         this.users = <listuser[]>resData;
         this.loaded = true;
@@ -48,7 +47,7 @@ export class ListUnregisteredComponent implements OnInit {
   }
   onAddMess(rollno: string){
     console.log(rollno);
-    this.listunregisteredservice.addmess(rollno,this.authService.mess).subscribe(
+    this.authService.addmess(rollno,this.authService.mess).subscribe(
       resData => {
         console.log(resData);
         console.log(this.authService.mess);

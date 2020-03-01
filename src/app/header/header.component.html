@@ -14,6 +14,9 @@
           <a class="navbar-item" [ngClass]="{'grey':list}" *ngIf="isAdmin" routerLink="/list">
             Add Dues
           </a>
+          <a class="navbar-item" [ngClass]="{'grey':unreg}" *ngIf="isAdmin" routerLink="/messcut">
+            Mess Cut
+          </a>
         </div>
         <div class="navbar-end">
           <div class="btncss">

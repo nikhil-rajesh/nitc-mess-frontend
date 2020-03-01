@@ -1,0 +1,104 @@
+<app-header></app-header>
+<div class="container" style="padding:2rem;">
+    <div class="columns">
+        <div class="column formcard is-two-fifths">
+            <mat-card>
+                <form class="form-horizontal" id="studentDetails" [formGroup]="studentDetails">
+                    <mat-form-field appearance="outline" style="width: 71%;">
+                        <mat-label>Roll No</mat-label>
+                        <input type="text" matInput placeholder="Roll No" formControlName="roll" required
+                          [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="refreshData($event.option.value)">
+                            <mat-option *ngFor="let option of filteredUsers | async" [value]="option.rollNumber">
+                              {{option.rollNumber}}
+                            </mat-option>
+                          </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="width: 71%;">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Placeholder" [readonly]="true" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hostel</mat-label>
+                        <input matInput placeholder="Placeholder" [readonly]="true" formControlName="hostel">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Room</mat-label>
+                        <input matInput placeholder="Placeholder" [readonly]="true" formControlName="room">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Total Extra</mat-label>
+                        <input matInput placeholder="Placeholder" [readonly]="true" formControlName="extra">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Total Mess Bill</mat-label>
+                        <input matInput placeholder="Placeholder" [readonly]="true" formControlName="total">
+                    </mat-form-field>
+                </form>
+                <mat-divider></mat-divider>
+                <mat-form-field style="width: 90%; margin-top: 1.5em;">
+                    <input matInput 
+                    type="text" 
+                    placeholder="Mess Cut Date Range.." ngxDaterangepickerMd  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                    [(ngModel)]="selected" 
+                    />     
+                </mat-form-field>
+                <div class="buttons" style="margin-bottom: 1.5em;">
+                    <button mat-raised-button class="button is-primary">Absent</button>
+                    <button mat-raised-button class="button is-primary">Present</button>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-form-field style="width: 90%; margin-top: 1.5em;">
+                    <input matInput 
+                    type="text" 
+                    placeholder="Extra.." ngxDaterangepickerMd  [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                    [(ngModel)]="selected" 
+                    />     
+                </mat-form-field>
+                <button mat-raised-button class="button buttons is-primary" style="margin-bottom: 1.5em;">Delete Extra</button>
+            </mat-card>
+        </div>
+        <div class="column tablecard">
+            <mat-card>
+                <table mat-table [dataSource]="dataSource" style="margin: auto;width: 100%;">
+
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef style="max-width: 80px;"> Id </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index" style="max-width: 80px;">
+                            <span class="mobile-label">Id:</span>
+                            {{i+1}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date">
+                        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <span class="mobile-label">Date:</span>
+                            {{element.date}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dailyCharge">
+                        <mat-header-cell *matHeaderCellDef> Daily Charge </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <span class="mobile-label">Daily Charge:</span>
+                            {{element.dailycharge}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="extra">
+                        <mat-header-cell *matHeaderCellDef> Extra </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <span class="mobile-label">Extra:</span>
+                            {{element.extra}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </table>
+            </mat-card>
+        </div>
+    </div>
+</div>

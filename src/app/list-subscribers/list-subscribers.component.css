@@ -46,3 +46,12 @@
     padding: 0;
   }
 }
+.something mat-card {
+  padding: 0;
+}
+.something{
+  margin-top: -2em;
+}
+.search {
+  padding-left: 10px;
+}
