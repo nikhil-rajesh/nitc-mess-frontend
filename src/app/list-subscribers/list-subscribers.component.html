@@ -9,9 +9,9 @@
             </mat-form-field>
         </div>
         <div class="column is-paddingless is-one-fifths datepick">
-            <form class="form-horizontal" id="wastage" [formGroup]="date">
+            <form class="form-horizontal" id="date" [formGroup]="date">
                 <mat-form-field appearance="outline">
-                    <mat-label>Date of Wastage</mat-label>
+                    <mat-label>Date of Due</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="date" (click)="picker.open()" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
