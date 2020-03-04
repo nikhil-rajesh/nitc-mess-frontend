@@ -6,4 +6,8 @@
     align-items: flex-start;
     flex-direction: column;
     font-family: 'Patua One', cursive;
+    color: white;
+}
+.is-blue{
+    background: linear-gradient(to right, #377fea 20%, #653dea) #377fea;
 }

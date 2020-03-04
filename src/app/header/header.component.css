@@ -1,5 +1,9 @@
 .grey {
-    background-color: #089883;
+    /* background-color: #089883; */
+    background: #653deaad;
+}
+.navbar-item:hover{
+    background: #653dea;
 }
 .btncss {
     display: flex;
@@ -11,5 +15,11 @@
     border: 2px solid white;
 }
 .button:hover {
-    border: 2px solid #089883;
+    border: 2px solid black;
+}
+.is-blue {
+    background: linear-gradient(to right, #377fea 20%, #653dea) #377fea;
+}
+.is-blue * {
+    color: white;
 }
